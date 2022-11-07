@@ -1,0 +1,77 @@
+<div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="logo">
+        Welcome
+      </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item active  ">
+        <a class="nav-link" href="./map">
+          <i class="material-icons">location_city</i>
+          <p>store map</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./inventory">
+          <i class="material-icons">assignment</i>
+          <p>Inventory</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./stores">
+          <i class="material-icons">home</i>
+          <p>Stores</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./train_model">
+          <i class="material-icons">event</i>
+          <p>Train Model</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+	<script type='text/javascript'>
+    function GetMap() {
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: 'AoxujC0Z4j2Cw-hW5QJYM-Hwh9TRXBvNkgDGnB6x73NssDzrmHjCcJOU4kQKg-nm'
+        });
+        
+        var latitude="<%-latitude%>"
+        latitude= latitude.split(',');
+        var longitude="<%-longitude%>"
+        longitude= longitude.split(',');
+        //Request the user's location
+        for (let index = 0; index < 100 ; index++) {
+            var loc = new Microsoft.Maps.Location(
+                latitude[index],
+                longitude[index]);
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+        }
+
+        var loc = new Microsoft.Maps.Location(
+            31.746096346217975,
+            35.18291460380003);
+            //Center the map.
+            map.setView({ center: loc, zoom: 7.5 });
+    
+    }
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+</head>
+<body>
+    <div class="col-lg-3 col-md-6 float-right">
+        <div class="sidebarcenter">
+    <div id="myMap" style="position:relative;width:940px;height:680px;"></div>
+        </div>
+    </div>
+
+</body>
+</html>

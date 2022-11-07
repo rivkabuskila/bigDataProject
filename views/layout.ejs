@@ -1,0 +1,77 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+   Dashboard
+  </title>
+  <!-- Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+   <!-- CSS Files   -->
+  <link href="css/material-dashboard.css?v=2.1.2" rel="stylesheet" />  
+</head>
+<body class="" onload="">
+  <div class="wrapper">
+    <%-body%>
+  </div>
+  <div class="sidebarright float-right" >
+    <div class="card-header card-header-warning">
+    <h4 class="card-title text-warning">The total stock of flavors in all branches</h4>
+    </div>
+    <div class="card-body table-responsive">
+      <canvas id="myChart" style="width:10%;max-width:1px"></canvas>
+      <table class="table" id="myTable">
+        <thead class="text-warning">
+          <th>flavor</th>
+          <th>ammounts</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img src="./images/chocolate.png" alt="Trulli" width="20" height="20">
+              chocolate
+            </td>
+            <td>2000</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="./images/vanilla.png" alt="Trulli" width="20" height="20">
+              vanilla</td>
+            <td>2000</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="./images/Oreo.png" alt="Trulli" width="20" height="20">
+              oreo</td>
+            <td>2000</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="./images/strawberry.png" alt="Trulli" width="20" height="20">
+              strawberry</td>
+            <td>2000</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="./images/berries.png" alt="Trulli" width="20" height="20">
+              berries</td>
+            <td>2000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <script type="text/javascript" src="./js/totalData.js"></script>
+</body>
+</html>

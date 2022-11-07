@@ -1,0 +1,127 @@
+<div class="sidebar" data-color="purple" data-background-color="white">
+  <div class="logo">
+    Welcome
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="./map">
+          <i class="material-icons">location_city</i>
+          <p>store map</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./inventory">
+          <i class="material-icons">assignment</i>
+          <p>Inventory</p>
+        </a>
+      </li>
+      <li class="nav-item active  ">
+        <a class="nav-link" href="./stores">
+          <i class="material-icons">home</i>
+          <p>Stores</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./train_model">
+          <i class="material-icons">event</i>
+          <p>Train Model</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-lg-3 col-md-6 float-right">
+  <div class="sidebarcenter text-center">
+    <select id="selectElementId">
+      <option value="">Please select store</option>
+    </select>
+    <script>
+      var select = document.getElementById('selectElementId');
+      var city = "<%-city%>"
+      city = city.split(',');
+      for (var i = 0; i < 100; i++) {
+        var option = document.createElement("option");
+        option.text = city[i];
+        option.value = city[i];
+        select.add(option);
+      }
+    </script>
+    <select id="selectflavor">
+      <option value="">Please select flavor</option>
+    </select>
+    <script>
+      var select_flavor = document.getElementById('selectflavor');
+      var flavors = "<%-flavors%>"
+      flavors = flavors.split(',');
+      for (var i = 0; i < 5; i++) {
+        var option = document.createElement("option");
+        option.text = flavors[i];
+        option.value = flavors[i];
+        select_flavor.add(option);
+      }
+    </script>
+    <button>load</button>
+    <div class="text-center text-warning">
+      <p>מלאי נוכחי בסניף הנבחר</p>
+    </div>
+    <canvas id="bar-chart" style="width:10%;max-width:500px">
+    </canvas>
+    <script>
+      var myChart = new Chart("bar-chart", {
+        type: 'bar',
+        data: {
+          labels: flavors,
+          datasets: [{
+            data: [0, 0, 0, 0, 0],
+            backgroundColor: ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"],
+          }]
+        },
+        options: {
+          legend: { display: false },
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript" src="./js/storeData.js"></script>
+    <div class="text-center text-warning">
+      <p>תחזית שבועית למכירת טעם מסוים בסניף הנבחר</p>
+    </div>
+    <canvas id="myChart" style="width:100%;max-width:430px"></canvas>
+
+    <script>
+      const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const d = new Date();
+      var dayNames=[];
+      for (var i = 0; i < 7; i++) {
+        dayNames.push(weekday[(d.getDay()+i)%7]);
+      }
+      var yValues = [0, 0, 0, 0, 0, 0, 0];
+      var line_chart = new Chart("myChart", {
+        type: "line",
+        data: {
+          labels: dayNames,
+          datasets: [{
+            data: yValues,
+            fill: false,
+            // lineTension: 5,
+            backgroundColor: "rgba(50,0,255,1.0)",
+            borderColor: "rgb(0,0,255)"
+          }]
+        },
+        options: {
+          legend: { display: false },
+          scales: {
+            yAxes: [{ ticks: { min: 0, max: 120 } }],
+          }
+        }
+      });
+    </script>
+  </div>
+</div>

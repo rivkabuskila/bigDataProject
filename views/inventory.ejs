@@ -1,0 +1,94 @@
+<div class="sidebar" data-color="purple" data-background-color="white">
+  <div class="logo">
+    Welcome
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="./map">
+          <i class="material-icons">location_city</i>
+          <p>store map</p>
+        </a>
+      </li>
+      <li class="nav-item active  ">
+        <a class="nav-link" href="./inventory">
+          <i class="material-icons">assignment</i>
+          <p>Inventory</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./stores">
+          <i class="material-icons">home</i>
+          <p>Stores</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./train_model">
+          <i class="material-icons">event</i>
+          <p>Train Model</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-lg-3 col-md-6 float-right">
+  <div class="sidebarcenter">
+    <br>
+    <card>
+      עונה נוכחית:חורף
+    </card>
+    <card>
+      חג קרוב:חנוכה
+    </card>
+    <div class="text-center text-warning">
+      <p><br><br>Stocks included in the entire chain of stores</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js">
+    </script>
+    <style>
+      .container {
+        width: 40%;
+        margin: 5px auto;
+      }
+    </style>
+    <canvas id="pie-chart" style="width:50%;max-width:600px"></canvas>
+    <script>
+      var data = [{
+        data: [2000, 2000, 2000, 2000, 2000],
+        backgroundColor: ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"],
+        borderColor: "#fff"
+      }];
+      var options = {
+        tooltips: {
+          enabled: false
+        },
+        plugins: {
+          datalabels: {
+            formatter: (value, ctx) => {
+              const datapoints = ctx.chart.data.datasets[0].data
+              const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
+              const percentage = value / total * 100
+              return percentage.toFixed(2) + "%";
+            },
+            color: '#fff',
+          }
+        }
+      };
+      var flavors = "<%-flavors%>"
+      flavors = flavors.split(',');
+      var ctx = document.getElementById("pie-chart").getContext('2d');
+      var myChartPie = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: flavors,
+          datasets: data
+        },
+        options: options,
+        plugins: [ChartDataLabels],
+      });
+    </script>
+    <script type="text/javascript" src="./js/inventoryData.js"></script>
+  </div>
+</div>

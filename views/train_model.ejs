@@ -1,0 +1,94 @@
+<div class="sidebar" data-color="purple" data-background-color="white">
+  <div class="logo">
+    Welcome
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="./map">
+          <i class="material-icons">location_city</i>
+          <p>store map</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./inventory">
+          <i class="material-icons">assignment</i>
+          <p>Inventory</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./stores">
+          <i class="material-icons">home</i>
+          <p>Stores</p>
+        </a>
+      </li>
+      <li class="nav-item active  ">
+        <a class="nav-link" href="./train_model">
+          <i class="material-icons">event</i>
+          <p>Train Model</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-lg-3 col-md-6 float-right">
+  <div class="sidebarcenter">
+    <div class="text-center">
+      <p>
+        <button class="train_model">train model</button>
+        :הכנת נתונים ושליחתם לשירות למידה
+      </p>
+    </div>
+    <div class="text-center">
+      <p1 class="text-center">בדיקת חיזוי:</p1>
+    </div>
+    <div class="text-right">
+      <input type="date" id="date" name="date">
+      <select id="selectElementId">
+        <option value="">Please select store</option>
+      </select>
+      <script>
+        var select = document.getElementById('selectElementId');
+        var city = "<%-city%>"
+        city = city.split(',');
+        for (var i = 0; i < 100; i++) {
+          var option = document.createElement("option");
+          option.text = city[i];
+          option.value = city[i];
+          select.add(option);
+        }
+      </script>
+      <select id="selectflavor">
+        <option value="">Please select store</option>
+      </select>
+      <script>
+        var select_flavor = document.getElementById('selectflavor');
+        var flavors = "<%-flavors%>"
+        flavors = flavors.split(',');
+        for (var i = 0; i < 5; i++) {
+          var option = document.createElement("option");
+          option.text = flavors[i];
+          option.value = flavors[i];
+          select_flavor.add(option);
+        }
+      </script>
+      <script>
+        var btn = document.querySelector(".train_model");
+        btn.onclick = async function () {
+          console.log("train model")
+          var socket = io();
+          socket.emit("train model");
+        }
+      </script>
+      <button class="load">load</button><br><br>
+      <script type="text/javascript" src="./js/trainModel.js"></script>
+      <info class="text-center">
+             <br><br>
+             <div class="text-left">
+              <img src="./images/1.png" alt="Trulli" width="50" height="50"><br>
+             </div>
+            <p2 class="text-left" id="pre"></p2>
+      </info>
+    </div>
+  </div>
+</div>
